@@ -33,7 +33,7 @@ namespace AdventOfCode2020
 
             var scenarios = new[] { (1, 1), (3, 1), (5, 1), (7, 1), (1, 2) };
 
-            var result = 1l;
+            var result = 1L;
             var width = input[0].Length;
 
             foreach (var (right, down) in scenarios)
