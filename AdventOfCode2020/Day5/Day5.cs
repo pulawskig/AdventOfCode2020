@@ -23,13 +23,10 @@ namespace AdventOfCode2020
             var input = await GetInput();
 
             var ids = GetIds(input);
-
             var max = ids.Max();
+            var except = Enumerable.Range(70, max - 70).Except(ids).Single();
 
-            var except = Enumerable.Range(70, max - 70).Except(ids);
-
-            foreach (var e in except)
-                Console.WriteLine(e);
+            Console.WriteLine(except);
         }
 
         private static async Task<(bool[], bool[])[]> GetInput()
