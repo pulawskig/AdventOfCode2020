@@ -29,5 +29,35 @@ namespace AdventOfCode2020
                 }
             }
         }
+
+        public static TSource MinBy<TSource, TSelector>(this IEnumerable<TSource> source, Func<TSource, TSelector> selector)
+        {
+            Comparer<TSelector> comparer = Comparer<TSelector>.Default;
+
+            TSelector value;
+            TSource element;
+
+            using (IEnumerator<TSource> e = source.GetEnumerator())
+            {
+                if (!e.MoveNext())
+                {
+                    return default;
+                }
+
+                value = selector(e.Current);
+                element = e.Current;
+                while (e.MoveNext())
+                {
+                    var x = selector(e.Current);
+                    if (comparer.Compare(x, value) < 0)
+                    {
+                        value = x;
+                        element = e.Current;
+                    }
+                }
+            }
+
+            return element;
+        }
     }
 }
