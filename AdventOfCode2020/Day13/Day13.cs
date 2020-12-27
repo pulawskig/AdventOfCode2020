@@ -36,7 +36,6 @@ namespace AdventOfCode2020
                 .Select((x, i) => x == "x" ? null : new { Id = int.Parse(x), Offset = i })
                 .Where(x => x != null)
                 .Select(x => new { x.Id, x.Offset, Delay = x.Id - (timestamp % x.Id) })
-                //.OrderBy(x => x.Delay)
                 .ToArray();
 
             Func<int, int, int> absoluteModulo = (a, b) => ((a % b) + b) % b;
