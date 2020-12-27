@@ -33,8 +33,10 @@ namespace AdventOfCode2020
             //await Day13.SolvePart2();
             //await Day14.SolvePart1();
             //await Day14.SolvePart2();
-            await Day15.SolvePart1();
-            await Day15.SolvePart2();
+            //await Day15.SolvePart1();
+            //await Day15.SolvePart2();
+            await Day16.SolvePart1();
+            await Day16.SolvePart2();
         }
     }
 }
