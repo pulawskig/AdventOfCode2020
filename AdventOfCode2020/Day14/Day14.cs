@@ -64,6 +64,11 @@ namespace AdventOfCode2020
 
             var list = new List<ulong>();
 
+            var zerosBase = maskBase
+                    .Select((x, i) => (Bit: x, Index: i))
+                    .Where(x => x.Bit == BitMask.Zero)
+                    .ToArray();
+
             foreach (var mask in masks)
             {
                 var ones = mask
@@ -73,7 +78,15 @@ namespace AdventOfCode2020
                     .DefaultIfEmpty(0uL)
                     .Aggregate((a, b) => a | b);
 
-                list.Add(value | ones);
+                var zeros = mask
+                    .Select((x, i) => (Bit: x, Index: i))
+                    .Where(x => x.Bit == BitMask.Zero)
+                    .Except(zerosBase)
+                    .Select(x => ~(1uL << x.Index))
+                    .DefaultIfEmpty(~0uL)
+                    .Aggregate((a, b) => a & b);
+
+                list.Add((value & zeros) | ones);
             }
 
             return list.ToArray();
